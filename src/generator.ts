@@ -61,35 +61,35 @@ export async function generateDotEnvFile({
   });
   // Post-process the file to ensure that values with spaces are wrapped in quotes, etc.
   // so that the file can be sourced without errors.
-  let processedFileContents = fs
-    .readFileSync(outputPath, "utf-8")
-    .split(/\n/)
-    .map((line) => line.trim())
-    .join("\n");
-  for (const [
-    pattern,
-    replacement,
-    description,
-  ] of POSTPROCESSING_REPLACEMENT_PATTERNS) {
-    core.info(`Running post-processor: "${description}"`);
-    for (const match of processedFileContents.matchAll(pattern)) {
-      const wrapperCharacter = replacement[replacement.length - 1];
-      const obscuredValue = "*****";
-      const wrappedObscuredValue = `${wrapperCharacter}${obscuredValue}${wrapperCharacter}`;
-      core.warning(
-        `${match[0].replace(match[2], obscuredValue)} --> ${match[0].replace(
-          match[2],
-          wrappedObscuredValue
-        )}`
-      );
-    }
-    processedFileContents = processedFileContents
-      .replace(pattern, replacement)
-      .trim();
-  }
-  if (!processedFileContents) {
-    core.warning("The generated dotenv file is empty.");
-  }
-  fs.writeFileSync(outputPath, processedFileContents);
+  // let processedFileContents = fs
+  //   .readFileSync(outputPath, "utf-8")
+  //   .split(/\n/)
+  //   .map((line) => line.trim())
+  //   .join("\n");
+  // for (const [
+  //   pattern,
+  //   replacement,
+  //   description,
+  // ] of POSTPROCESSING_REPLACEMENT_PATTERNS) {
+  //   core.info(`Running post-processor: "${description}"`);
+  //   for (const match of processedFileContents.matchAll(pattern)) {
+  //     const wrapperCharacter = replacement[replacement.length - 1];
+  //     const obscuredValue = "*****";
+  //     const wrappedObscuredValue = `${wrapperCharacter}${obscuredValue}${wrapperCharacter}`;
+  //     core.warning(
+  //       `${match[0].replace(match[2], obscuredValue)} --> ${match[0].replace(
+  //         match[2],
+  //         wrappedObscuredValue
+  //       )}`
+  //     );
+  //   }
+  //   processedFileContents = processedFileContents
+  //     .replace(pattern, replacement)
+  //     .trim();
+  // }
+  // if (!processedFileContents) {
+  //   core.warning("The generated dotenv file is empty.");
+  // }
+  // fs.writeFileSync(outputPath, processedFileContents);
   return true;
 }
