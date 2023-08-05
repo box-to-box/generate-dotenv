@@ -71267,6 +71267,7 @@ const child_process_1 = __nccwpck_require__(2081);
 const fs_1 = __nccwpck_require__(7147);
 function generateTemplate({ templatePaths, }) {
     return __awaiter(this, void 0, void 0, function* () {
+        core.info('generateTemplate()');
         let template = "";
         if (templatePaths.length === 1) {
             template = (0, fs_1.readFileSync)(templatePaths[0], "utf8");
@@ -71278,6 +71279,8 @@ function generateTemplate({ templatePaths, }) {
                     // stdio: "inherit",
                     encoding: "utf8",
                 });
+                core.info(templatePaths.toString());
+                core.info(template);
             }
             catch (err) {
                 core.setFailed(err instanceof Error ? err.message : `${err}`);
