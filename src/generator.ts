@@ -57,6 +57,7 @@ export async function generateDotEnvFile({
   }
   core.info("Generating dotenv file ...");
   core.info(template);
+  core.info(`${template}`);
   execSync(`echo "${template}" | envsubst > ${outputPath}`, {
     env: process.env,
   });
