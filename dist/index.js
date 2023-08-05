@@ -70913,6 +70913,7 @@ function generateDotEnvFile({ template, outputPath, allowMissingVars = false, })
             return false;
         }
         core.info("Generating dotenv file ...");
+        core.info(template);
         (0, child_process_1.execSync)(`echo "${template}" | envsubst > ${outputPath}`, {
             env: process.env,
         });
