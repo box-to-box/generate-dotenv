@@ -10,6 +10,7 @@ export async function generateTemplate({
   let template = "";
   if (templatePaths.length === 1) {
     template = readFileSync(templatePaths[0], "utf8");
+    core.info(template);
   } else if (templatePaths.length > 1) {
     try {
       template = execSync(

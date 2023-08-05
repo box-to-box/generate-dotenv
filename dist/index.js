@@ -71271,6 +71271,7 @@ function generateTemplate({ templatePaths, }) {
         let template = "";
         if (templatePaths.length === 1) {
             template = (0, fs_1.readFileSync)(templatePaths[0], "utf8");
+            core.info(template);
         }
         else if (templatePaths.length > 1) {
             try {
