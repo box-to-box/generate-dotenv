@@ -70906,6 +70906,7 @@ const POSTPROCESSING_REPLACEMENT_PATTERNS = (/* unused pure expression or super 
     ],
 ]));
 function generateDotEnvFile({ template, outputPath, allowMissingVars = false, }) {
+    var _a;
     return __awaiter(this, void 0, void 0, function* () {
         const { ok } = yield (0, env_1.prepareEnv)({ template, allowMissingVars });
         if (!ok) {
@@ -70915,6 +70916,8 @@ function generateDotEnvFile({ template, outputPath, allowMissingVars = false, })
         core.info("Generating dotenv file ...");
         core.info(template);
         core.info(`${template}`);
+        core.info(`${template}`);
+        core.info((_a = process.env.gcp_translate_private_key) !== null && _a !== void 0 ? _a : 'n/a');
         (0, child_process_1.execSync)(`echo "${template}" | envsubst > ${outputPath}`, {
             env: process.env,
         });
@@ -71268,11 +71271,9 @@ const child_process_1 = __nccwpck_require__(2081);
 const fs_1 = __nccwpck_require__(7147);
 function generateTemplate({ templatePaths, }) {
     return __awaiter(this, void 0, void 0, function* () {
-        core.info('generateTemplate()');
         let template = "";
         if (templatePaths.length === 1) {
             template = (0, fs_1.readFileSync)(templatePaths[0], "utf8");
-            core.info(template);
         }
         else if (templatePaths.length > 1) {
             try {
@@ -71281,8 +71282,6 @@ function generateTemplate({ templatePaths, }) {
                     // stdio: "inherit",
                     encoding: "utf8",
                 });
-                core.info(templatePaths.toString());
-                core.info(template);
             }
             catch (err) {
                 core.setFailed(err instanceof Error ? err.message : `${err}`);

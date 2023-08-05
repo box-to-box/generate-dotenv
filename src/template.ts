@@ -6,11 +6,9 @@ import { Inputs } from "./inputs";
 export async function generateTemplate({
   templatePaths,
 }: Pick<Inputs, "templatePaths">): Promise<string> {
-  core.info('generateTemplate()');
   let template = "";
   if (templatePaths.length === 1) {
     template = readFileSync(templatePaths[0], "utf8");
-    core.info(template);
   } else if (templatePaths.length > 1) {
     try {
       template = execSync(
@@ -21,8 +19,6 @@ export async function generateTemplate({
           encoding: "utf8",
         }
       );
-      core.info(templatePaths.toString());
-      core.info(template);
     } catch (err) {
       core.setFailed(err instanceof Error ? err.message : `${err}`);
     }
