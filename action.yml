@@ -15,7 +15,7 @@ inputs:
   cache:
     description: "Boolean specifying whether to cache the output file ('true' or 'false')"
     required: false
-    default: "true"
+    default: "false"
   key:
     description: "Key used to identify the cached/uploaded dotenv file (default: concatenation of the template paths and the GITHUB_SHA env var)"
     required: false
