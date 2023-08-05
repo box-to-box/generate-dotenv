@@ -70915,10 +70915,9 @@ function generateDotEnvFile({ template, outputPath, allowMissingVars = false, })
         }
         core.info("Generating dotenv file ...");
         core.info(template);
-        core.info(`${template}`);
-        core.info(`${template}`);
         core.info((_a = process.env.gcp_translate_private_key) !== null && _a !== void 0 ? _a : 'n/a');
-        (0, child_process_1.execSync)(`echo "${template}" | envsubst > ${outputPath}`, {
+        // execSync(`echo "${template}" | envsubst > ${outputPath}`, {
+        (0, child_process_1.execSync)(`cat ${template} | envsubst > ${outputPath}`, {
             env: process.env,
         });
         // Post-process the file to ensure that values with spaces are wrapped in quotes, etc.
@@ -71189,7 +71188,7 @@ function run() {
         if (!restored) {
             const template = yield (0, template_1.generateTemplate)({ templatePaths });
             const generated = yield (0, generator_1.generateDotEnvFile)({
-                template,
+                template: templatePaths[0],
                 outputPath,
                 allowMissingVars,
             });

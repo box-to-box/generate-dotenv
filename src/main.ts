@@ -24,7 +24,7 @@ async function run(): Promise<void> {
   if (!restored) {
     const template = await generateTemplate({ templatePaths });
     const generated = await generateDotEnvFile({
-      template,
+      template: templatePaths[0],
       outputPath,
       allowMissingVars,
     });

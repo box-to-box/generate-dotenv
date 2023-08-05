@@ -57,10 +57,9 @@ export async function generateDotEnvFile({
   }
   core.info("Generating dotenv file ...");
   core.info(template);
-  core.info(`${template}`);
-  core.info(`${template}`);
   core.info(process.env.gcp_translate_private_key ?? 'n/a');
-  execSync(`echo "${template}" | envsubst > ${outputPath}`, {
+  // execSync(`echo "${template}" | envsubst > ${outputPath}`, {
+  execSync(`cat ${template} | envsubst > ${outputPath}`, {
     env: process.env,
   });
   // Post-process the file to ensure that values with spaces are wrapped in quotes, etc.
